@@ -14,10 +14,10 @@
 
 <script setup>
 import { ref } from 'vue';
-import NavigationBar from '@components/organisms/NavigationBar.vue';
-import SideBar from '@components/organisms/SideBar.vue';
+import NavigationBar from '@components/organisms/common/NavigationBar.vue';
+import SideBar from '@components/organisms/common/SideBar.vue';
 
-const showSidebar = ref(true);
+const showSidebar = ref(false);
 
 const toggleSidebar = () => {
   showSidebar.value = !showSidebar.value;

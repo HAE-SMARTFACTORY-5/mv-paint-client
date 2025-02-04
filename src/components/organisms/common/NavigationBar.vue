@@ -4,12 +4,11 @@
       <button class="navbar__toggle" @click="toggleSidebar">
         <span class="toggle-icon"></span>
       </button>
-      <div class="navbar__logo">Logo</div>
+      <div class="navbar__logo">QMS</div>
     </div>
     <div class="navbar__menu">
-      <a href="#" class="navbar__link">홈</a>
-      <a href="#" class="navbar__link">소개</a>
-      <a href="#" class="navbar__link">연락처</a>
+      <a href="#" class="navbar__link">관리자</a>
+      <a href="#" class="navbar__link">로그아웃</a>
     </div>
   </nav>
 </template>
