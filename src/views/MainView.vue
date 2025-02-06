@@ -3,7 +3,7 @@
     <div class="quality">
       <section class="quality__section quality__section--left">
         <div class="quality__graph">
-          <span class="quality__title">품질 검사 결과</span>
+          <span class="quality__title">품질 검사 통계</span>
           <div class="quality__card-wrapper">
             <Card>
               <QualityGraph />
@@ -36,7 +36,7 @@ import DefaultTemplate from '@components/templates/DefaultTemplate.vue';
 import Card from '@components/molecules/Card.vue';
 import QualityList from '@components/organisms/quality/QualityList.vue';
 import QualityGraph from '@components/organisms/quality/QualityGraph.vue';
-import QualityDetail from '@components/organisms/quality/QualityDetial.vue';
+import QualityDetail from '@components/organisms/quality/QualityDetail.vue';
 </script>
 
 <style lang="scss" scoped>

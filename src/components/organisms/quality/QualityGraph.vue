@@ -10,6 +10,7 @@ import { useStatisticsStore } from '@/stores/statistics';
 
 const statisticsStore = useStatisticsStore();
 const chartRef = ref(null);
+let chart = null;
 
 const chartOptions = {
   responsive: true,

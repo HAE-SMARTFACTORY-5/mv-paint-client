@@ -1,12 +1,12 @@
 <template>
-  <div class="table-container">
+  <div class="quality-list">
     <el-table
       :data="qualityStore.qualityList"
       border
-      style="width: 100%"
-      :header-cell-class-name="'table-header'"
+      class="quality-list__table"
+      :header-cell-class-name="'quality-list__header'"
       @row-click="handleRowClick"
-      height="280"
+      height="310"
     >
       <el-table-column prop="date" label="날짜" min-width="25%" sortable />
       <el-table-column prop="sn" label="S/N" min-width="20%" align="center" />
@@ -29,7 +29,10 @@
         align="center"
       >
         <template #default="{ row }">
-          <el-tag :type="row.result === 'PASS' ? 'success' : 'danger'">
+          <el-tag
+            :type="row.result === 'PASS' ? 'success' : 'danger'"
+            class="quality-list__result-tag"
+          >
             {{ row.result }}
           </el-tag>
         </template>
@@ -41,12 +44,14 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useQualityStore } from '@/stores/quality';
+import { useQualityDetailStore } from '@/stores/qualityDetail';
 
 const qualityStore = useQualityStore();
-const selectedUser = ref(null);
+const qualityDetailStore = useQualityDetailStore();
 
 const handleRowClick = (row) => {
-  selectedUser.value = row;
+  qualityDetailStore.setSelectedPapercupId(row.sn);
+  qualityDetailStore.fetchQualityDetail(row.sn);
 };
 
 onMounted(() => {
@@ -54,34 +59,26 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-.table-container {
+<style lang="scss" scoped>
+.quality-list {
   width: 100%;
   height: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+  padding: 10px;
+
+  &__table {
+    width: 100%;
+  }
+
+  &__header {
+    font-weight: 700;
+  }
+
+  &__result-tag {
+    width: 60px;
+    text-align: center;
+  }
 }
 
-.selected-info {
-  margin-top: 20px;
-  padding: 15px;
-  background: #f4f4f4;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.el-table {
-  margin-bottom: 20px;
-}
-
-/* Result tag styling */
-.el-tag {
-  width: 60px;
-  text-align: center;
-}
 :deep(.table-header) {
   font-weight: 700;
 }
