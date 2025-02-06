@@ -28,6 +28,7 @@ const toggleSidebar = () => {
 .default-layout {
   width: 100%;
   min-height: 100vh;
+  max-height: 100vh;
 }
 
 .content-wrapper {

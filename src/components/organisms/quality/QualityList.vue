@@ -1,11 +1,12 @@
 <template>
   <div class="table-container">
     <el-table
-      :data="qualityList"
+      :data="qualityStore.qualityList"
       border
       style="width: 100%"
       :header-cell-class-name="'table-header'"
       @row-click="handleRowClick"
+      height="280"
     >
       <el-table-column prop="date" label="날짜" min-width="25%" sortable />
       <el-table-column prop="sn" label="S/N" min-width="20%" align="center" />
@@ -34,53 +35,34 @@
         </template>
       </el-table-column>
     </el-table>
-
-    <div v-if="selectedUser" class="selected-info">
-      <p>선택된 정보: {{ selectedUser.date }}, {{ selectedUser.sn }}</p>
-    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useQualityStore } from '@/stores/quality';
 
-const qualityList = ref([
-  {
-    date: '2024-03-15 10:01',
-    sn: 111111,
-    line: 'P01',
-    process: '10A',
-    result: 'PASS',
-  },
-  {
-    date: '2024-03-14 10:02',
-    sn: 222222,
-    line: 'P01',
-    process: '10A',
-    result: 'PASS',
-  },
-  {
-    date: '2024-03-13 10:03',
-    sn: 333333,
-    line: 'P01',
-    process: '10A',
-    result: 'NG',
-  },
-]);
-
+const qualityStore = useQualityStore();
 const selectedUser = ref(null);
 
 const handleRowClick = (row) => {
   selectedUser.value = row;
 };
+
+onMounted(() => {
+  qualityStore.fetchQualityList();
+});
 </script>
 
 <style scoped>
 .table-container {
   width: 100%;
+  height: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .selected-info {
