@@ -7,6 +7,7 @@
       :header-cell-class-name="'quality-list__header'"
       @row-click="handleRowClick"
       height="310"
+      :highlight-current-row="true"
     >
       <el-table-column prop="date" label="날짜" min-width="25%" sortable />
       <el-table-column prop="sn" label="S/N" min-width="20%" align="center" />
@@ -77,6 +78,10 @@ onMounted(() => {
     width: 60px;
     text-align: center;
   }
+}
+
+:deep(.el-table__row.current-row) {
+  background-color: #f5f7fa !important;
 }
 
 :deep(.table-header) {

@@ -99,11 +99,13 @@ const formatDate = (dateString) => {
 
   &__image {
     flex: 1;
-    width: 100%;
+    min-width: 300px;
+    min-height: 400px;
+    max-width: 300px;
+    max-height: 400px;
 
     &-content {
       width: 100%;
-      max-width: 500px;
       height: auto;
       border-radius: 8px;
       margin-bottom: 80px;
